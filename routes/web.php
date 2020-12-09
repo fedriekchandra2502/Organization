@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return redirect('home');
 });
 
 Auth::routes();
@@ -35,7 +35,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit-pic/{organization_id}/{pic_id}', 'OrganizationController@getEditPIC');
         Route::post('/edit-pic', 'OrganizationController@postEditPIC');
         Route::post('/delete-pic', 'OrganizationController@postDeletePIC');
-        Route::post('/search-organization', 'OrganizationController@postSearchOrganization');
     });
 });
 

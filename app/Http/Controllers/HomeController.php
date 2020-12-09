@@ -22,9 +22,28 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $organizations = DB::table('organizations')->get();
+
+        $search = $request->input('search');
+        if($search) {
+            $organizations = DB::table('organizations as o')
+                        ->select([
+                            'o.id',
+                            'o.organization_name',
+                            'o.email',
+                            'o.phone',
+                            'o.website',
+                            'o.logo',
+                        ])
+                        ->leftJoin('organization_has_pic as pic','o.id','=','pic.organization_id')
+                        ->where('o.organization_name','like', '%'.$search.'%')
+                        ->orWhere('pic.pic_name','like','%'.$search.'%')
+                        ->get();
+        }
+
+
         return view('home',compact("organizations"));
     }
 }

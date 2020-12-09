@@ -5,9 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <form class="form-inline" action="/search">
+            <form method="GET" class="form-inline" action="/home">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="search" placeholder="Search...">
+                    <input type="text" autocomplete="off" class="form-control" name="search" placeholder="Search by Organization, PIC">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
