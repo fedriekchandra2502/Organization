@@ -14,11 +14,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Auth::routes([
-    'register' => false
-]);
+Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/organization/{id}','OrganizationController@getOrganizationDetail');
+    Route::get('/create-organization',function () {
+        return view('organization.organization-create');
+    });
+    Route::post('create-organization');
+    Route::get('/organization/create-pic');
+    Route::post('/organization/create-pic');
+    Route::get('/organization/edit/{id}');
+    Route::post('/organization/edit/{id}');
+    Route::post('/organization/assign-manager');
+    Route::post('/organization/delete');
+    Route::post('/organization/delete-pic');
+});
+

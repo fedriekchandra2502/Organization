@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePicTable extends Migration
+class CreateOrganizationHasManagerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreatePicTable extends Migration
      */
     public function up()
     {
-        Schema::create('pic', function (Blueprint $table) {
-            $table->id();
-            $table->string('pic_name');
-            $table->string('email')->unique();
-            $table->string('phone');
-            $table->string('avatar');
+        Schema::create('organization_has_manager', function (Blueprint $table) {
+            $table->foreignId('organization_id')->constrained('organizations');
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreatePicTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pic');
+        Schema::dropIfExists('organization_has_manager');
     }
 }

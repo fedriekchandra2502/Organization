@@ -15,6 +15,11 @@ class CreateOrganizationHasPicTable extends Migration
     {
         Schema::create('organization_has_pic', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('organization_id')->constrained('organizations');
+            $table->string('pic_name');
+            $table->string('email')->unique();
+            $table->string('phone');
+            $table->string('avatar');
             $table->timestamps();
         });
     }
