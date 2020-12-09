@@ -14,13 +14,17 @@
 
             <br>
 
-            <button type="button" class="btn btn-primary">Create New Organization</button>
+            @hasrole('admin')
+            <a href="/create-organization" class="btn btn-primary">Create New Organization</a>
             </br><br>
+            @endhasrole
+
+            <h3>Organization List</h3>
 
             <ul class="list-group">
-                <li class="list-group-item">First item</li>
-                <li class="list-group-item">Second item</li>
-                <li class="list-group-item">Third item</li>
+                @foreach($organizations as $organization)
+                    <li class="list-group-item"><a href="/organization/{{$organization->id}}">{{ $organization->organization_name }}</a></li>
+                @endforeach
             </ul>
 
         </div>

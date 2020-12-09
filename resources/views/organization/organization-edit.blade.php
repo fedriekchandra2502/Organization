@@ -2,27 +2,31 @@
 
 @section('content')
 <div class="container">
-  <form action="/action_page.php">
-    <input type="hidden" name="id" value="{{id}}" />
+  <form action="/organization/edit" method="POST" enctype="multipart/form-data">
+    @csrf
     <div class="form-group">
-      <label for="org_name">Organization Name:</label>
-      <input type="text" class="form-control" id="org_name" placeholder="Organization Name" name="organization_name">
+      <label for="organization_id">Organization ID:</label>
+      <input type="text" class="form-control" value="{{$organization_id}}" id="organization_id" name="organization_id" readonly>
+    </div>
+    <div class="form-group">
+      <label for="organization_name">Organization Name:</label>
+      <input type="text" class="form-control" value="{{$organization->organization_name}}" id="organization_name" placeholder="Organization Name" name="organization_name">
     </div>
     <div class="form-group">
       <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email" required>
+      <input type="email" class="form-control" value="{{$organization->email}}" id="email" placeholder="Enter Email" name="email" required>
     </div>
     <div class="form-group">
       <label for="phone">Phone:</label>
-      <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number" name="phone" required>
+      <input type="text" class="form-control" value="{{$organization->phone}}" id="phone" placeholder="Enter Phone Number" name="phone" required>
     </div>
     <div class="form-group">
       <label for="website">Website:</label>
-      <input type="text" class="form-control" id="website" placeholder="Enter Website Address" name="website" required>
+      <input type="text" class="form-control" value="{{$organization->website}}" id="website" placeholder="Enter Website Address" name="website" required>
     </div>
     <div class="form-group">
-      <label for="avatar">Avatar:</label>
-      <input type="file" class="form-control" id="avatar" name="avatar" required>
+      <label for="logo">Logo:</label>
+      <input type="file" class="form-control" id="logo" name="logo">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
